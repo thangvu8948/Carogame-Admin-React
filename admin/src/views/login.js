@@ -5,9 +5,6 @@ import $ from 'jquery';
 export default function Login() {
     const [userName, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [newUserName, setNewUserName] = useState("");
-    const [newPassword, setNewPassword] = useState("");
-    const [rePassword, setRePassword] = useState("");
     // function validateForm() {
     //     return email.length > 0 && password.length > 0;
     // }

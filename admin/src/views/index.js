@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 // import "../assets/login.css";
-export default function index() {
+export default function Index() {
    
     return (
         <div className="container">

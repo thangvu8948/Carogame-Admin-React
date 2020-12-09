@@ -18,19 +18,21 @@ class AccountService {
         localStorage.removeItem("token");
     }
 
-    async register(name, email, password) {
+    async register(name, password,repassword) {
         return await Post(API_URL + "register",
             {
                 'Username': name,
-                'Email': email,
-                'Password': password
+                'Password': password,
+                'RePassword':repassword
             },
             { 'Content-Type': 'application/json' }
         );
     }
 
     getCurrentUser() {
-        return JSON.parse(localStorage.getItem('token'));;
+        const tokens = localStorage.getItem('token').split(".");
+        const data =JSON.parse(atob(tokens[1]));
+        return data;
     }
 
     // async auth() {

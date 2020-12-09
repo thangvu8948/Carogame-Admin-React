@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import "../assets/login.css";
 import AccountService from "../services/account.service";
+import $ from 'jquery';
 export default function Login() {
     const [userName, setUsername] = useState("");
     const [password, setPassword] = useState("");
-
+    const [newUserName, setNewUserName] = useState("");
+    const [newPassword, setNewPassword] = useState("");
+    const [rePassword, setRePassword] = useState("");
     // function validateForm() {
     //     return email.length > 0 && password.length > 0;
     // }
@@ -18,10 +21,31 @@ export default function Login() {
         event.preventDefault();
        const res= await AccountService.login(userName,password);
        if(Boolean(res.token)){
+        const tokens = res.token.split(".");
+        const data =JSON.parse(atob(tokens[1]));
+        if(data.RoleID==1){
             window.location.href = "/caro";
+        }
+        else{
+            //đẩy qua user
+            alert("Redirect to user");
+        }
+             
        }
     }
-
+    const handleSubmitRegister= async (event)=> {
+        event.preventDefault();
+        var data = {};
+        $('#signupform').serializeArray().map(function(x){data[x.name] = x.value;}); 
+        console.log(data);
+       const res= await AccountService.register(data.newuser,data.newpass,data.repass);
+       if(res){
+           alert("Sign Up Successfull");
+       }
+       else{
+           alert("Sign Up Failed. Please try with different name");
+       }
+    }
     return (
         <div className="row">
             <div className="col-md-6 mx-auto p-0">
@@ -68,28 +92,51 @@ export default function Login() {
                                         <div className="foot"> <a href="#">Forgot Password?</a> </div>
                                     </div>
                                 </form>
+                                <form id="signupform" onSubmit={handleSubmitRegister}>
                                 <div className="sign-up-form">
                                     <div className="group">
                                         <label for="user" className="label">Username</label>
-                                        <input id="user" type="text" className="input" placeholder="Create your Username" />
+                                        <input name="newuser" 
+                                        type="text" 
+                                        // onChange={handleNewUserNameChange}
+                                        className="input"
+                                        placeholder="Create your Username" />
                                     </div>
                                     <div className="group">
                                         <label for="pass" className="label">Password</label>
-                                        <input id="pass" type="password" className="input" data-type="password" placeholder="Create your password" />
+                                        <input 
+                                        name="newpass"
+                                        // onChange={handleNewPasswordChange}
+                                        type="password" 
+                                        className="input" 
+                                        data-type="password" 
+                                        placeholder="Create your password" />
                                     </div>
                                     <div className="group">
                                         <label for="pass" className="label">Repeat Password</label>
-                                        <input id="pass" type="password" className="input" data-type="password" placeholder="Repeat your password" />
+                                        <input 
+                                        name="repass" 
+                                        type="password" 
+                                        className="input" 
+                                        // onChange={handleRePasswordChange}
+                                        data-type="password" 
+                                        placeholder="Repeat your password" />
                                     </div>
-                                    <div className="group">
+                                    {/* <div className="group">
                                         <label for="pass" className="label">Email Address</label>
-                                        <input id="pass" type="text" className="input" placeholder="Enter your email address" />
-                                    </div>
+                                        <input 
+                                        id="pass" 
+                                        type="text" 
+                                        className="input" 
+                                        placeholder="Enter your email address" />
+                                    </div> */}
                                     <div className="group"> <input type="submit" className="button" value="Sign Up" />
                                     </div>
                                     <div className="hr"></div>
-                                    <div className="foot"> <label for="tab-1">Already Member?</label> </div>
+                                    <div className="foot"> 
+                                    <label for="tab-1">Already Member?</label> </div>
                                 </div>
+                                </form>
                             </div>
                         </div>
                     </div>

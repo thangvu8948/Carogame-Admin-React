@@ -1,17 +1,23 @@
-import './App.css';
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import "./App.css";
+import React, { useState, useEffect, Component } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Login from "./views/login";
 import Index from "./views/index";
+import AccountService from "./services/account.service";
 function App() {
+  const [currentUser, setCurrentUser] = useState(undefined);
+  useEffect(() => {
+    const user = AccountService.getCurrentUser();
+    if (user) {
+      setCurrentUser(user);
+    }
+  }, []);
   return (
     <div className="App">
-      <Router>
-        <Switch>
-          <Route exact path='/' component={Login} />
-          <Route exact path='/caro' component={Index} />
-        </Switch>
-      </Router>
+      {/* <Router>
+        <Route exact path="/" component={currentUser ? Index : Login} />
+      </Router> */}
+      {currentUser ? <Index></Index> : <Login></Login>}
     </div>
   );
 }

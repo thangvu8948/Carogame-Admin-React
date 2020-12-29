@@ -1,5 +1,18 @@
-import React, { useState } from "react";
-// import "../assets/login.css";
-export default function Index() {
-  return <div className="container">Play Caro</div>;
+import React, { Component } from "react";
+// import { Switch, Route, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Sidebar from "../components/sidebar";
+import Main from "./main";
+import Battles from "./battle";
+function Index() {
+  return (
+    <div className="wrapper">
+      <Router>
+        <Sidebar />
+        <Route path="/" component={Main} />
+      </Router>
+    </div>
+  );
 }
+
+export default Index;

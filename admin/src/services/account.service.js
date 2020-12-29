@@ -33,9 +33,13 @@ class AccountService {
   }
 
   getCurrentUser() {
-    const tokens = localStorage.getItem("token").split(".");
-    const data = JSON.parse(atob(tokens[1]));
-    return data;
+    try {
+      const tokens = localStorage.getItem("token").split(".");
+      const data = JSON.parse(atob(tokens[1]));
+      return data;
+    } catch (e) {
+      return "";
+    }
   }
 
   // async auth() {

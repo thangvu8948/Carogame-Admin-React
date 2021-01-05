@@ -6,7 +6,7 @@ function Sidebar() {
     <div className="sidebar">
       <div className="sidebar-wrapper">
         <div className="logo">
-          <Link to="/" className="simple-text">
+          <Link to="/users" className="simple-text">
             Simple Caro
           </Link>
         </div>

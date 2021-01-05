@@ -128,6 +128,19 @@ export default function Login() {
                       />
                     </div>
                     <div className="group">
+                      <label for="email" className="label">
+                        Email
+                      </label>
+                      <input
+                        name="email"
+                        // onChange={handleNewPasswordChange}
+                        type="text"
+                        className="input"
+                        data-type="password"
+                        placeholder="Email"
+                      />
+                    </div>
+                    <div className="group">
                       <label for="pass" className="label">
                         Password
                       </label>

@@ -1,56 +1,69 @@
 import React, { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
-import AdminService from "../services/admin.service";
-function Battle() {
+import BattltService from "../services/battle.service";
+import { Redirect } from "react-router";
+function Battle(props) {
   const columns = [
     {
-      name: "UserName",
-      selector: "Username",
+      name: "GUID",
+      selector: "GUID",
+      sortable: false,
+    },
+    {
+      name: "Winner",
+      selector: "Winner",
       sortable: true,
     },
     {
-      name: "Score",
-      selector: "Score",
+      name: "Loser",
+      selector: "Loser",
       sortable: true,
     },
     {
-      name: "Victory",
-      selector: "WinBattle",
+      name: "CreatedAt",
+      selector: "CreatedAt",
       sortable: true,
+      format: (row) => formatter.format(Date.parse(row.CreatedAt)),
     },
     {
-      name: "Defeat",
-      selector: "DefeatBattle",
-      sortable: true,
-    },
-    {
-      name: "Draw",
-      selector: "DrawBattle",
-      sortable: true,
+      name: "IsDraw",
+      selector: "IsDraw",
+      sortable: false,
     },
   ];
-  const [users, SetUsers] = useState([]);
+  let formatter = new Intl.DateTimeFormat("en-GB", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+  });
+  const [battles, setBattles] = useState([]);
   const handleClick = (row) => {
-    console.log(row);
-    window.location.href = `battles/${row.ID}`;
+    console.log(window.location.origin);
+    window.location.href = `${window.location.origin}/battles/${row.ID}`;
   };
   useEffect(async () => {
-    const usrs = await AdminService.getAllUser();
+    const usrs = Boolean(props.userid)
+      ? await BattltService.getBattles(props.userid)
+      : await BattltService.getAllBattle();
     const res = await usrs.json();
-    console.log(res);
     if (res) {
-      SetUsers(res);
+      setBattles(res);
     }
   }, []);
-  return (
+  return battles == null ? (
+    <p>Loading</p>
+  ) : (
     <div className="content">
       <div className="container-fluid">
         <div className="row">
           <DataTable
             title="Battles"
             columns={columns}
-            data={users}
-            defaultSortField="Score"
+            data={battles}
+            defaultSortField="CreatedAt"
             defaultSortAsc={false}
             pagination
             selectableRows

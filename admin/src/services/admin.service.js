@@ -13,6 +13,23 @@ class AdminService {
     });
     return res;
   }
+  async Banned(id, status) {
+    const res = await fetch(API_URL + `users/${id}/banned/${status}`, {
+      headers: authHeader(),
+    });
+    return res;
+  }
+  async ChangeAvatar(id, avatar) {
+    const res = await Post(
+      "http://localhost:1337/user/" + `${id}/avatar`,
+      {
+        avatar: avatar,
+      },
+
+      authHeader()
+    );
+    return res;
+  }
   // async auth() {
   //     return await fetch(API_URL + 'auth', { headers: authHeader() });
   // }

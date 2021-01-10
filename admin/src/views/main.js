@@ -5,6 +5,7 @@ import Users from "./user";
 import Battles from "./battle";
 import UserInfo from "./userInfo";
 import BattleChat from "./battleChat";
+import DetailBattle from "./detailBattle";
 function Main() {
   return (
     <div className="main-panel">
@@ -23,7 +24,7 @@ function Main() {
           exact
           path="/battles/:id"
           render={(props) => {
-            return <BattleChat id={props.match.params.id} />;
+            return <DetailBattle id={props.match.params.id} />;
           }}
         />
         <Route

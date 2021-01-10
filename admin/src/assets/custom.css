@@ -1,0 +1,125 @@
+ol,
+ul {
+    padding-left: 30px;
+}
+
+.board-row:after {
+    clear: both;
+    content: '';
+    display: table;
+}
+
+.game-board {
+    margin: 0 auto;
+}
+
+.status {
+    margin-bottom: 10px;
+}
+
+.statusWinner {
+    color: rgb(243, 13, 13);
+    font-weight: bold;
+}
+
+.no-click {
+    pointer-events: none;
+}
+
+.statusDraw {
+    color: #999;
+    font-weight: bold;
+}
+
+.square {
+    background: #fff;
+    border: 1px solid #999;
+    float: left;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 17px;
+    height: 20px;
+    margin-right: -1px;
+    margin-top: -1px;
+    padding: 0;
+    text-align: center;
+    width: 20px;
+}
+
+.square-X {
+    color: red;
+}
+
+.square-O {
+    color: blue;
+}
+
+.square--green {
+    background: #4c87af;
+}
+
+.square:focus {
+    outline: none;
+}
+
+.kbd-navigation .square:focus {
+    background: #ddd;
+}
+
+.game {
+    display: flex;
+    flex-direction: row;
+    margin-top: 50px;
+    /* margin-left: 50px;  */
+}
+
+.game-info {
+    margin-left: 20px;
+}
+
+.button {
+    background-color: #555555;
+    /* Gray */
+    border: none;
+    color: #fff;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.button--green {
+    background-color: #4caf50;
+    color: #000;
+    font-weight: bold;
+}
+
+.button--new-game {
+    background-color: #adaf4c;
+    color: #fff;
+    font-weight: bold;
+    margin-left: 2px;
+}
+
+.cbtn {
+    background-color: DodgerBlue;
+    border: none;
+    color: white;
+    padding: 12px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 5px 10px 5px 10px;
+}
+
+.progress {
+    margin: 0 auto;
+    width: 500px;
+}
+
+
+/* Darker background on mouse-over */
+
+.cbtn:hover {
+    background-color: RoyalBlue;
+}

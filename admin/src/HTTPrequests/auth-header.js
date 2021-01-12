@@ -1,6 +1,6 @@
-export default function authHeader() {
+export default function authHeader(strToken = localStorage.getItem("token")) {
   try {
-    const strToken = localStorage.getItem("token");
+    // const strToken = localStorage.getItem("token");
     if (Boolean(strToken)) {
       //   const token = JSON.parse(strToken);
       return new Headers({

@@ -14,13 +14,13 @@ function Sidebar() {
           <li className="nav-item">
             <NavLink className="nav-link" to="/users">
               <i className="nc-icon nc-chart-pie-35"></i>
-              <p>Dashboard</p>
+              <p>USERS</p>
             </NavLink>
           </li>
           <li className="nav-item">
             <NavLink className="nav-link" to="/battles">
               <i className="nc-icon nc-circle-09"></i>
-              <p>User Profile</p>
+              <p>BATTLES</p>
             </NavLink>
           </li>
         </ul>

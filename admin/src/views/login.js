@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../assets/login.css";
 import AccountService from "../services/account.service";
 import $ from "jquery";
+const SERVER_HOST = "http://localhost:1337/";
 export default function Login() {
   const [userName, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -21,11 +22,14 @@ export default function Login() {
       const tokens = res.token.split(".");
       const data = JSON.parse(atob(tokens[1]));
       if (data.RoleID == 1) {
-        window.location.href = "/caro";
+        window.location.href = "/";
       } else {
         //đẩy qua user
         alert("Redirect to user");
       }
+    }
+    if (Boolean(res.IsVeryfied)) {
+      window.location.href = `/notify/${res.IsVeryfied}`;
     }
   };
   const handleSubmitRegister = async (event) => {
@@ -37,13 +41,10 @@ export default function Login() {
         data[x.name] = x.value;
       });
     console.log(data);
-    const res = await AccountService.register(
-      data.newuser,
-      data.newpass,
-      data.repass
-    );
+    const res = await AccountService.register(data);
     if (res) {
       alert("Sign Up Successfull");
+      window.location.href = `/notify/${res}`;
     } else {
       alert("Sign Up Failed. Please try with different name");
     }
@@ -105,6 +106,19 @@ export default function Login() {
                                     </div> */}
                     <div className="group">
                       <input type="submit" className="button" value="Sign In" />
+                    </div>
+                    <div className="group">
+                      <a
+                        href={`${SERVER_HOST}auth/facebook`}
+                        class="link_button"
+                      >
+                        Facebook
+                      </a>
+                    </div>
+                    <div className="group">
+                      <a href={`${SERVER_HOST}auth/google`} class="link_button">
+                        Google
+                      </a>
                     </div>
                     <div className="hr"></div>
                     <div className="foot">

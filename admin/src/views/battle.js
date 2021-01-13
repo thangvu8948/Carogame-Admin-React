@@ -5,6 +5,12 @@ import { Redirect } from "react-router";
 function Battle(props) {
   const columns = [
     {
+      name: "ID",
+      selector: "ID",
+      sortable: true,
+      //show: false
+    },
+    {
       name: "GUID",
       selector: "GUID",
       sortable: false,
@@ -23,7 +29,7 @@ function Battle(props) {
       name: "CreatedAt",
       selector: "CreatedAt",
       sortable: true,
-      format: (row) => formatter.format(Date.parse(row.CreatedAt)),
+      //format: (row) => formatter.format(Date.parse(row.CreatedAt)),
     },
     {
       name: "IsDraw",

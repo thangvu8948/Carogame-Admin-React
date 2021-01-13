@@ -51,8 +51,8 @@ export default function Login() {
   };
   return (
     <div className="row">
-      <div className="col-md-6 mx-auto p-0">
-        <div className="card">
+      <div className="col-md-6 mx-auto p-0" style={{display:"block"}}>
+        <div className="card" style={{display:"block", margin:"0 auto", left:"0", marginTop:"30px"}}>
           <div className="login-box">
             <div className="login-snip">
               <input
@@ -67,7 +67,6 @@ export default function Login() {
               </label>
               <input id="tab-2" type="radio" name="tab" className="sign-up" />
               <label for="tab-2" className="tab">
-                Sign Up
               </label>
               <div className="login-space">
                 <form onSubmit={handleSubmitLogin}>
@@ -107,97 +106,10 @@ export default function Login() {
                     <div className="group">
                       <input type="submit" className="button" value="Sign In" />
                     </div>
-                    <div className="group">
-                      <a
-                        href={`${SERVER_HOST}auth/facebook`}
-                        class="link_button"
-                      >
-                        Facebook
-                      </a>
-                    </div>
-                    <div className="group">
-                      <a href={`${SERVER_HOST}auth/google`} class="link_button">
-                        Google
-                      </a>
-                    </div>
-                    <div className="hr"></div>
-                    <div className="foot">
-                      {" "}
-                      <a href="#">Forgot Password?</a>{" "}
-                    </div>
                   </div>
                 </form>
-                <form id="signupform" onSubmit={handleSubmitRegister}>
-                  <div className="sign-up-form">
-                    <div className="group">
-                      <label for="user" className="label">
-                        Username
-                      </label>
-                      <input
-                        name="newuser"
-                        type="text"
-                        // onChange={handleNewUserNameChange}
-                        className="input"
-                        placeholder="Create your Username"
-                      />
-                    </div>
-                    <div className="group">
-                      <label for="email" className="label">
-                        Email
-                      </label>
-                      <input
-                        name="email"
-                        // onChange={handleNewPasswordChange}
-                        type="text"
-                        className="input"
-                        data-type="password"
-                        placeholder="Email"
-                      />
-                    </div>
-                    <div className="group">
-                      <label for="pass" className="label">
-                        Password
-                      </label>
-                      <input
-                        name="newpass"
-                        // onChange={handleNewPasswordChange}
-                        type="password"
-                        className="input"
-                        data-type="password"
-                        placeholder="Create your password"
-                      />
-                    </div>
-                    <div className="group">
-                      <label for="pass" className="label">
-                        Repeat Password
-                      </label>
-                      <input
-                        name="repass"
-                        type="password"
-                        className="input"
-                        // onChange={handleRePasswordChange}
-                        data-type="password"
-                        placeholder="Repeat your password"
-                      />
-                    </div>
-                    {/* <div className="group">
-                                        <label for="pass" className="label">Email Address</label>
-                                        <input 
-                                        id="pass" 
-                                        type="text" 
-                                        className="input" 
-                                        placeholder="Enter your email address" />
-                                    </div> */}
-                    <div className="group">
-                      {" "}
-                      <input type="submit" className="button" value="Sign Up" />
-                    </div>
-                    <div className="hr"></div>
-                    <div className="foot">
-                      <label for="tab-1">Already Member?</label>{" "}
-                    </div>
-                  </div>
-                </form>
+                
+                  
               </div>
             </div>
           </div>

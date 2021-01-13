@@ -1,6 +1,7 @@
 import authHeader from "../HTTPrequests/auth-header";
 import Post from "../HTTPrequests/Post";
-const API_URL = "http://localhost:1337/";
+import {HOST} from "../constants/constants";
+const API_URL = HOST;
 
 class AccountService {
   async login(username, password) {

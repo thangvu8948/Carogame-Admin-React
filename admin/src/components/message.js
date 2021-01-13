@@ -1,6 +1,18 @@
-import React from "react";
-import "../assets/chat.css";
+import React, { useEffect, useState } from "react";
+import adminService from "../services/admin.service";
+
 const Message = (props) => {
+  const [sdr, setSdr] = useState(null);
+  useEffect( async () => {
+    const sender = await adminService.getUserBy(props.senderId);
+    console.log(sender);
+    try {
+      const senderData = await sender.json();
+      console.log(senderData);
+      setSdr(senderData);
+    } catch(e) {}
+
+  }, []);
   return props.mine ? (
     <div className="outgoing_msg">
       <div className="sent_msg">
@@ -15,8 +27,9 @@ const Message = (props) => {
     <div className="incoming_msg">
       <div className="incoming_msg_img">
         <img
-          src="https://ptetutorials.com/images/user-profile.png"
+          src={ sdr ? sdr.Avatar : "https://ptetutorials.com/images/user-profile.png"}
           alt={props.Username}
+          title={props.Username}
         />
       </div>
       <div className="received_msg">

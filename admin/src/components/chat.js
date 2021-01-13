@@ -50,6 +50,8 @@ const Chat = (props) => {
       <div id="chat-box" className="msg_history">
         {props.message.map((item) => (
           <Message
+          //mine={item.senderId === props.ID}
+          senderId = {item.senderId}
             msg={item.message}
             // time={item.time}
             Username={item.senderUsername}
